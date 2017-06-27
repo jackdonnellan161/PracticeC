@@ -12,12 +12,26 @@ int main() {
 	double betF;
 
 	/*Ask and scan for user defined variables (initC, finC, step)*/
-	printf("Pick an initial Celcius temperature: ");
+	printf("Pick an initial Celcius temperature (>-20): ");
 	scanf("%lf", &initC);
-	printf("Pick a final celcius temperature: ");
+	while(initC < -20){
+		printf("Please choose a suitable value: ");
+		scanf("%lf", &initC);
+	}
+
+	printf("Pick a final celcius temperature (<1000): ");
 	scanf("%lf", &finC);
+	while(finC >= 1000){
+		printf("Please choose a suitable value: ");
+		scanf("%lf", &finC);
+	}
+
 	printf("Pick a step size: ");
 	scanf("%lf", &step);
+	while(step > (finC-initC)){
+		printf("Please choose a suitable value");
+		scanf("%lf", &step);
+	}
 
 	betC = initC; /*So that it can be used properly later.*/
 
@@ -28,7 +42,7 @@ int main() {
 	/*Print C Values, Compute F Values, and Print F values*/
 		while(betC <= finC) {
 		betF = CtoF(betC); /*Computes conversion*/
-		printf("%8.6lf     %8.6lf\n",betC,betF); /*Prints*/
+		printf("%10lf     %10lf\n",betC,betF); /*Prints*/
 		betC = betC + step;
 	}
 
