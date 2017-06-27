@@ -5,26 +5,31 @@
 int main() {
 
 	/*Declare Variables*/
-	float allF;
-	int initC;
-	int finC;
-	float step;
-	int *list;
+	double initC;
+	double finC;
+	double step;
+	double betC;
+	double betF;
 
 	/*Ask and scan for user defined variables (initC, finC, step)*/
 	printf("Pick an initial Celcius temperature: ");
-	scanf("%d", &initC);
+	scanf("%lf", &initC);
 	printf("Pick a final celcius temperature: ");
-	scanf("%d", &finC);
+	scanf("%lf", &finC);
 	printf("Pick a step size: ");
-	scanf("%f", &step);
+	scanf("%lf", &step);
 
-	/*Determine all the temperatures to be converted and store them in an array*/
-	list = allCel(initC,finC,step);
+	betC = initC; /*So that it can be used properly later.*/
 
-	/*Print all C values*/
-	for(int ii=0;ii<100;ii++){
-		printf("%d\n",*(list+ii));
+	/*Begin to print table*/
+	printf("\nCelcius       Farenheight\n");
+	printf("-------       -----------\n");
+
+	/*Print C Values, Compute F Values, and Print F values*/
+		while(betC <= finC) {
+		betF = CtoF(betC); /*Computes conversion*/
+		printf("%8.6lf     %8.6lf\n",betC,betF); /*Prints*/
+		betC = betC + step;
 	}
 
 	return 0;
